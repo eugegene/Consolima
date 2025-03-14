@@ -6,8 +6,18 @@ namespace Consolima
     {
         static void Main(string[] args)
         {
-            MenuHandler menuHandler = new MenuHandler();
-            menuHandler.MainMenuProcess();
+            while (true)
+            {
+                try
+                {
+                    MenuHandler menuHandler = new MenuHandler();
+                    menuHandler.MainMenuProcess();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"An error occurred: {ex.Message}");
+                }
+            }
         }
     }
 }

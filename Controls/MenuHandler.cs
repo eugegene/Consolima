@@ -22,7 +22,6 @@ namespace Consolima.Controls
                 Console.WriteLine("4. About");
                 Console.WriteLine("0. Exit");
 
-                //choice = Convert.ToInt32(Console.ReadLine());
 
                 if (int.TryParse(Console.ReadLine(), out choice))
                 {
@@ -115,14 +114,33 @@ namespace Consolima.Controls
             if (int.TryParse(Console.ReadLine(), out int choice) && 
             Enum.IsDefined(typeof(TextColor), choice))
             {
-                Console.ForegroundColor = (ConsoleColor)choice;
+                var colorMap = new Dictionary<TextColor, ConsoleColor>
+                {
+                    { TextColor.White, ConsoleColor.White },
+                    { TextColor.Red, ConsoleColor.Red },
+                    { TextColor.Green, ConsoleColor.Green },
+                    { TextColor.Blue, ConsoleColor.Blue },
+                    { TextColor.Cyan, ConsoleColor.Cyan },
+                    { TextColor.Magenta, ConsoleColor.Magenta },
+                    { TextColor.Yellow, ConsoleColor.Yellow },
+                    { TextColor.Gray, ConsoleColor.Gray },
+                    { TextColor.DarkRed, ConsoleColor.DarkRed },
+                    { TextColor.DarkGreen, ConsoleColor.DarkGreen },
+                    { TextColor.DarkBlue, ConsoleColor.DarkBlue },
+                    { TextColor.DarkCyan, ConsoleColor.DarkCyan },
+                    { TextColor.DarkMagenta, ConsoleColor.DarkMagenta },
+                    { TextColor.DarkYellow, ConsoleColor.DarkYellow },
+                    { TextColor.DarkGray, ConsoleColor.DarkGray }
+                };
+
+                Console.ForegroundColor = colorMap[(TextColor)choice];
                 Console.WriteLine($"\nText color changed to {((TextColor)choice)}!");
             }
             else
             {
                 Console.WriteLine("\nInvalid choice!");
             }
-        
+
             Console.WriteLine("Press any key to continue...");
             Console.ReadKey();
             Console.Clear();
