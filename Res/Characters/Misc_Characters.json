@@ -1,0 +1,16 @@
+[
+    {
+        "name": "Human",
+        "description": "...",
+        "speed": 10,
+        "strength": 1,
+        "health": 20
+    },
+    {
+        "name": "Kid",
+        "description": "...",
+        "speed": 5,
+        "strength": 0.1,
+        "health": 5
+    }
+]

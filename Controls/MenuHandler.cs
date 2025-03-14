@@ -9,6 +9,7 @@ namespace Consolima.Controls
 {
     public class MenuHandler
     {
+        // MAIN MENU
         public void MainMenuProcess()
         {
             int choice = 1;
@@ -64,7 +65,55 @@ namespace Consolima.Controls
             }
         }
 
+        // PICK CHARACTER MENU
+        public void PickCharacterMenuProcess()
+        {
+            int choice = 1;
+            while (choice != 0)
+            {
+                Console.WriteLine("------ Pick verse ------\n");
+                Console.WriteLine("1. Warrior");
+                Console.WriteLine("2. Mage");
+                Console.WriteLine("3. Archer");
+                Console.WriteLine("0. Back");
+                if (int.TryParse(Console.ReadLine(), out choice))
+                {
+                    switch (choice)
+                    {
+                        case 1:
+                            break;
+                        case 2:
+                            break;
+                        case 3:
+                            break;
+                        case 0:
+                            return;
+                        default:
+                            InvalidOutput();
+                            break;
+                    }
+                }
+                else
+                {
+                    InvalidOutput();
+                }
+            }
+        }
 
+        // GAME MENU
+        public void GameMenuProcess()
+        {
+            int choice = 1;
+
+            while (choice != 0)
+            {
+
+            }
+        }
+
+
+
+        // OPTIONS MENUs
         public void OptionsMenuProcess()
         {
             int choice = 1;
@@ -85,19 +134,13 @@ namespace Consolima.Controls
                         case 0:
                             return;
                         default:
-                            Console.WriteLine("\nInvalid choice.");
-                            Console.WriteLine("Press any key to continue...");
-                            Console.ReadKey();
-                            Console.Clear();
+                            InvalidOutput();
                             break;
                     }
                 }
                 else
                 {
-                    Console.WriteLine("\nInvalid input.");
-                    Console.WriteLine("Press any key to continue...");
-                    Console.ReadKey();
-                    Console.Clear();
+                    InvalidOutput();
                 }
             }
         }
@@ -141,6 +184,14 @@ namespace Consolima.Controls
                 Console.WriteLine("\nInvalid choice!");
             }
 
+            Console.WriteLine("Press any key to continue...");
+            Console.ReadKey();
+            Console.Clear();
+        }
+
+        public void InvalidOutput()
+        {
+            Console.WriteLine("\nInvalid input.");
             Console.WriteLine("Press any key to continue...");
             Console.ReadKey();
             Console.Clear();
