@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Consolima.Res.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -64,6 +65,7 @@ namespace Consolima.Controls
             }
         }
 
+
         public void OptionsMenuProcess()
         {
             int choice = 1;
@@ -79,44 +81,7 @@ namespace Consolima.Controls
                     switch (choice)
                     {
                         case 1:
-                            Console.WriteLine("\nSelect text color:");
-                            Console.WriteLine("1. Red");
-                            Console.WriteLine("2. Green");
-                            Console.WriteLine("3. Blue");
-                            Console.WriteLine("4. Yellow");
-
-                            Console.WriteLine("0. Back");
-                            if (int.TryParse(Console.ReadLine(), out int colorChoice))
-                            {
-                                switch (colorChoice)
-                                {
-                                    case 1:
-                                        Console.ForegroundColor = ConsoleColor.Red;
-                                        Console.WriteLine("\nText color changed to Red!");
-                                        break;
-                                    case 2:
-                                        Console.ForegroundColor = ConsoleColor.Green;
-                                        Console.WriteLine("\nText color changed to Green!");
-                                        break;
-                                    case 3:
-                                        Console.ForegroundColor = ConsoleColor.Blue;
-                                        Console.WriteLine("\nText color changed to Blue!");
-                                        break;
-                                    case 4:
-                                        Console.ForegroundColor = ConsoleColor.Yellow;
-                                        Console.WriteLine("\nText color changed to Blue!");
-                                        break;
-                                    case 0:
-                                        break;
-                                    default:
-                                        Console.WriteLine("\nInvalid choice. Press any key to continue...");
-                                        Console.ReadKey();
-                                        break;
-                                }
-                            }
-                            Console.WriteLine("Press any key to continue...");
-                            Console.ReadKey();
-                            Console.Clear();
+                            ConsoleTextColorMenuProcess();
                             break;
                         case 0:
                             return;
@@ -130,12 +95,37 @@ namespace Consolima.Controls
                 }
                 else
                 {
-                    Console.WriteLine("\nInvalid input. Please enter a number.");
+                    Console.WriteLine("\nInvalid input.");
                     Console.WriteLine("Press any key to continue...");
                     Console.ReadKey();
                     Console.Clear();
                 }
             }
+        }
+
+        public void ConsoleTextColorMenuProcess()
+        {
+            Console.WriteLine("\nSelect text color:");
+            var colors = Enum.GetValues(typeof(TextColor));
+            foreach (TextColor color in colors)
+            {
+                Console.WriteLine($"{(int)color}. {color}");
+            }
+
+            if (int.TryParse(Console.ReadLine(), out int choice) && 
+            Enum.IsDefined(typeof(TextColor), choice))
+            {
+                Console.ForegroundColor = (ConsoleColor)choice;
+                Console.WriteLine($"\nText color changed to {((TextColor)choice)}!");
+            }
+            else
+            {
+                Console.WriteLine("\nInvalid choice!");
+            }
+        
+            Console.WriteLine("Press any key to continue...");
+            Console.ReadKey();
+            Console.Clear();
         }
     }
 }
